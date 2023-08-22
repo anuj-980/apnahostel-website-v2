@@ -18,18 +18,18 @@
         height: 360px;
         width: 100%;
         object-fit: contain;
+        margin-botton: 16px;
     </style>
   </head>
   <body>
+    {% include 'nav.html' %}
+    <img class="img-fluid" id="banner" src="https://apnahostel-website--anujsrivastava9.repl.co/static/banner.jpg">
     <div class="container">
       <h1 class="text-center mt-4 mb-3">
         ApnaHostel
       </h1>
-      <img class="img-fluid" id="banner" src="https://apnahostel-website--anujsrivastava9.repl.co/static/banner.jpg">
       
-      <h2 class="text-center">
-        About Us
-      </h2>
+    
       <p class="lead mt-3 mb-4">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus auctor faucibus est, nec aliquam tellus lobortis nec. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Mauris in dui sit amet lorem porttitor volutpat interdum faucibus lorem. Aenean tempus, diam nec dapibus auctor, leo ligula egestas tellus, non cursus purus orci sed felis. Integer id interdum quam. Vivamus non fermentum orci, eu pretium metus. Vestibulum tellus turpis, tristique a mauris a, maximus iaculis risus. Maecenas a hendrerit elit. Mauris sit amet purus sem. Quisque lobortis tempor massa quis porta. In auctor ut nisi et mollis. Phasellus fermentum pretium nunc.
       </p>
@@ -42,7 +42,8 @@
       </h3>
       <div class="text-center">
       <button type="button" class="btn btn-primary btn-lg">Contact Us</button>
-        <p class="mt-4">Copyright 2023, ApnaHostel</p>
+      
       </div>
+      {% include 'footer.html' %}
   </body>
 </html>
