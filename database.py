@@ -25,3 +25,10 @@ def load_user(id):
       return None
     else:
       return rows[0]._asdict()
+
+def do_signup(details):
+  with engine.connect() as conn:
+    data = [{"val1": details['email'],"val2": details['name'],"val3": details['pass']}]
+    conn.execute(text("insert into signin (email,username,pass) values (:val1,:val2,:val3)"),data)
+    conn.commit()
+  return

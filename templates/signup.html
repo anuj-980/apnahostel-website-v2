@@ -2,29 +2,18 @@
   <head>
   {% include 'bootstrap.html' %}
 
-  <style>
-.container {
-  height: 200px;
-  position: relative;
-  
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(50%, 50%);
-  transform: translate(-50%, -50%);
-}
-</style>
 </head>
 <body>
   {% include 'script.html' %}
-   
-<form action="/SignIn/welcome" method="post">
+ 
+<form action="/signup/success" method="post">
   <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="grid">
+      <div class="mb-2 row">
+        <label>Full Name</label>
+        <input type="text" name="name">
+      </div>
+      
       <div class="mb-2 row">
         <label>Email</label>
         <input type="text" name="email">
@@ -39,13 +28,9 @@
       <div>
         <input type="submit">
       </div>
-      <div class="mb-2 row">
-      <a type="button" class="btn btn-link" href="/signup">SignUp</a>
-      </div>
     </div>
   </div>
 </form>
-
 
   {% include 'footer.html' %}
 </body>

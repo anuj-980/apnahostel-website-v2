@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request
-from database import load_signin, load_user
+from database import load_signin, load_user, do_signup
 
 app = Flask(__name__)
 
@@ -35,6 +35,17 @@ def welcome_user():
       return render_template('user.html',user=i)
   else:
     return "Incorrect email or password"
+
+@app.route("/signup")
+def signup():
+  return render_template('signup.html')
+
+@app.route("/signup/success", methods=['post'])
+def signup_done():
+  data = request.form
+  do_signup(data)
+  return render_template('signup_done.html')
+  
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
