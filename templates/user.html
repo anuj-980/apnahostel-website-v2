@@ -1,27 +1,27 @@
 <html>
   <head>
     <title>
-      Welcome {{user.id}}
+      Welcome {{(user.username).upper()}}
     </title>
   {% include 'bootstrap.html' %}
   </head>
   <body>
     {% include 'script.html' %}
     {% include 'usernav.html' %}
-    <style>
-      
-    .center {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -ms-transform: translate(50%, 50%);
-      transform: translate(-50%, -50%);
-    }
+
+  
+
+  <style>
+      #banner{
+        height: 360px;
+        width: 100%;
+        object-fit: contain;
+      }
     </style>
     
-    <div class="center">
-    <h1>Hello, user {{user.id}}</h1>
-    </div>
+  
+    
+    
+    
   </body>
 </html>
