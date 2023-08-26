@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine, text
+import os
 
-engine = create_engine("mysql+pymysql://sql6642397:YR1kqzCbEX@sql6.freesqldatabase.com/sql6642397?charset=utf8mb4")
+db_connection_str = os.environ['DB_CONN_STR']
+
+engine = create_engine(db_connection_str)
 
 def load_signin():
   with engine.connect() as conn:
