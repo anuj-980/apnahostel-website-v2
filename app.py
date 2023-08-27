@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request
-from database import load_signin, load_user, do_signup
+from database import load_signin, load_user, do_signup, load_admin
 
 app = Flask(__name__)
 
@@ -15,8 +15,7 @@ def load_all_users():
 
 @app.route("/SignIn")
 def hello_world2():
-  users = load_signin()
-  return render_template('login.html', users=users)
+  return render_template('login.html')
 
 '''@app.route("/SignIn/<id>")
 def show_user(id):
@@ -29,10 +28,16 @@ def show_user(id):
 def welcome_user():
   data = request.form
   users = load_signin()
+  admin = load_admin()
 
   for i in users:
     if data['email'] == i['email'] and data['pass'] == i['pass']:
       return render_template('user.html',user=i)
+      break
+  for j in admin:
+    if data['email'] == j['ad_email'] and data['pass'] == j['ad_pass']:
+      return render_template('admin.html',admin=j)
+      break
   else:
     return "Incorrect email or password"
 

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>
+      Welcome {{(admin.ad_name).upper()}}
+    </title>
+  {% include 'bootstrap.html' %}
+    <style>
+      .top {
+        transform: translate(0%, 100px);
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'script.html' %}
+    {% include 'adminnav.html' %}
+    <div>
+      <h2 style="transform: translate(30px, 70px);">DASHBOARD</h2>
+    </div>
+    <div class="top">
+    {% include 'images.html' %}
+    </div>
+  
+
+  <style>
+    #banner{
+      height: 75%;
+      width: 100%;
+      object-fit: cover;
+    }
+  </style>
+    
+  
+    
+    
+    
+  </body>
+</html>

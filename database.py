@@ -32,3 +32,14 @@ def do_signup(details):
     conn.execute(text("insert into signin (email,username,pass) values (:val1,:val2,:val3)"),data)
     conn.commit()
   return
+
+def load_admin():
+  with engine.connect() as conn:
+    result = conn.execute(text("select * from admin"))
+
+    
+    ad = []
+    for row in result.all():
+      ad.append(row._asdict())
+      
+  return ad
