@@ -26,6 +26,16 @@ def load_user(id):
     else:
       return rows[0]._asdict()
 
+def load_admin(id):
+  with engine.connect() as conn:
+    result = conn.execute(
+      text("SELECT * FROM admin WHERE id=:val"),{"val": id})
+    rows = result.all()
+    if len(rows) == 0:
+      return None
+    else:
+      return rows[0]._asdict()
+
 def do_signup(details):
   with engine.connect() as conn:
     data = [{"val1": details['email'],"val2": details['name'],"val3": details['pass']}]
@@ -33,7 +43,7 @@ def do_signup(details):
     conn.commit()
   return
 
-def load_admin():
+def load_admins():
   with engine.connect() as conn:
     result = conn.execute(text("select * from admin"))
 
@@ -43,3 +53,25 @@ def load_admin():
       ad.append(row._asdict())
       
   return ad
+
+def check_admin(data):
+  admins = load_admins()
+
+  for j in admins:
+    if data['email'] == j['ad_email'] and data['pass'] == j['ad_pass']:
+      admin=j['id']
+      return admin
+      break
+  else:
+    return 0
+
+def check_user(data):
+  users = load_signin()
+  
+  for i in users:
+    if data['email'] == i['email'] and data['pass'] == i['pass']:
+      user=i['id']
+      return user
+      break
+  else:
+    return 0

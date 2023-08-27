@@ -1,5 +1,5 @@
-from flask import Flask, render_template,jsonify, request
-from database import load_signin, load_user, do_signup, load_admin
+from flask import Flask, render_template,jsonify, request, redirect, url_for
+from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin
 
 app = Flask(__name__)
 
@@ -24,22 +24,30 @@ def show_user(id):
     return "Not Found"
   return render_template('user.html', user=user)'''
 
+@app.route("/student/<id>")
+def student(id):
+  user = load_user(id)
+  return render_template('user.html',user=user)
+
+@app.route("/admin/<id>")
+def ad(id):
+  admin = load_admin(id)
+  return render_template('admin.html',admin=admin)
+
 @app.route("/SignIn/welcome", methods=['post'])
 def welcome_user():
   data = request.form
-  users = load_signin()
-  admin = load_admin()
+  global user_id,admin_id
+  user_id = check_user(data)
+  admin_id = check_admin(data)
 
-  for i in users:
-    if data['email'] == i['email'] and data['pass'] == i['pass']:
-      return render_template('user.html',user=i)
-      break
-  for j in admin:
-    if data['email'] == j['ad_email'] and data['pass'] == j['ad_pass']:
-      return render_template('admin.html',admin=j)
-      break
+  if user_id:
+    return redirect(url_for('student',id=user_id))
+  elif admin_id:
+    return redirect(url_for('ad',id=admin_id))
   else:
     return "Incorrect email or password"
+
 
 @app.route("/signup")
 def signup():
@@ -49,8 +57,13 @@ def signup():
 def signup_done():
   data = request.form
   do_signup(data)
-  return render_template('signup_done.html')
+  admin = load_admin(admin_id)
+  return render_template('signup_done.html',admin=admin)
   
+'''@app.route("/signup/success/done")
+def home():
+    return redirect("/admin")'''
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
