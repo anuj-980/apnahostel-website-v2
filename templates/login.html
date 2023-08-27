@@ -3,47 +3,42 @@
   {% include 'bootstrap.html' %}
 
   <style>
-.container {
-  height: 200px;
-  position: relative;
-  
-}
+    
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(50%, 50%);
-  transform: translate(-50%, -50%);
-}
-</style>
-</head>
-<body>
-  {% include 'script.html' %}
-   
-<form action="/SignIn/welcome" method="post">
-  <div class="h-100 d-flex align-items-center justify-content-center">
-    <div class="grid">
-      <div class="mb-2 row">
-        <label>Email</label>
-        <input type="text" name="email">
-      </div>
-      
-      <div class="mb-2 row">
-        <label>Password</label>
-        <input type="text" name="pass">
-      </div>
-  
-      </br>
-      <div>
-        <input type="submit">
-      </div>
+    }
+  </style>
+  </head>
+  <body>
+    {% include 'script.html' %}
+
+     
+  <div class="center">
+    <div class="text-center">
+      <img src="static/logo.svg" width="60" height="50" alt="...">
     </div>
+      <form action="/SignIn/welcome" method="post">
+    <div class="mt-5 mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="pass" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
-</form>
 
-
+  <div class="container fixed-bottom">
   {% include 'footer.html' %}
+  </div>
 </body>
 </html>

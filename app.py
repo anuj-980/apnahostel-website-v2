@@ -59,10 +59,8 @@ def signup_done():
   do_signup(data)
   admin = load_admin(admin_id)
   return render_template('signup_done.html',admin=admin)
-  
-'''@app.route("/signup/success/done")
-def home():
-    return redirect("/admin")'''
+
+
 
 
 if __name__ == '__main__':
