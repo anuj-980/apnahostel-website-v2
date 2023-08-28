@@ -19,26 +19,27 @@
     {% include 'script.html' %}
 
      
-  <div class="center">
-    <div class="text-center">
-      <img src="static/logo.svg" width="60" height="50" alt="...">
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="grid" style="width: 400px; padding:25px;">
+      <div class="text-center">
+        <img src="static/logo.svg" width="60" height="50" alt="...">
+      </div>
+        <form action="/SignIn/welcome" method="post">
+      <div class="mt-5 mb-3 row">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3 row">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="pass" id="exampleInputPassword1">
+      </div>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      </div>
+      </form>
     </div>
-      <form action="/SignIn/welcome" method="post">
-    <div class="mt-5 mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" name="pass" id="exampleInputPassword1">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
   </div>
 
-  <div class="container fixed-bottom">
-  {% include 'footer.html' %}
-  </div>
+  
 </body>
 </html>
