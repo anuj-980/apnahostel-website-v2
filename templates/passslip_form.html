@@ -1,0 +1,44 @@
+<html>
+<head>
+  {% include 'bootstrap.html' %}
+</head>
+<body>
+  <form class="row g-3" action="/slip/requested" method="post">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Name</label>
+      <input type="text" class="form-control" name="std_name" id="inputEmail4">
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Place of visit</label>
+      <input type="text" class="form-control" name="place" id="inputPassword4">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address of place</label>
+      <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Time of departure</label>
+      <input type="text" class="form-control" name="time_go" id="inputZip">
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Time of arrival</label>
+      <input type="text" class="form-control" name="time_in" id="inputZip">
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Hostel Name</label>
+      <input type="text" class="form-control" name="hostel_name" id="inputCity">
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">College Name</label>
+      <input type="text" class="form-control" name="clg_name" id="inputCity">
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Room No.</label>
+      <input type="text" class="form-control" name="room_no" id="inputZip">
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</body>
+</html>

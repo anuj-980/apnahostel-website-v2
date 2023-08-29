@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request, redirect, url_for
-from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin
+from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin, put_slip_request
 
 app = Flask(__name__)
 
@@ -59,6 +59,23 @@ def signup_done():
   do_signup(data)
   admin = load_admin(admin_id)
   return render_template('signup_done.html',admin=admin)
+
+#_____________________________________________________________
+#USER
+
+@app.route("/slip")
+def slip_request():
+  return render_template('passslip_form.html')
+
+@app.route("/slip/requested", methods=['post'])
+def slip_requested():
+  data = request.form
+  req_list = [user_id,data]
+  put_slip_request(req_list)
+  user = user_id
+  return render_template('slip_requested.html',user=user)
+
+
 
 
 

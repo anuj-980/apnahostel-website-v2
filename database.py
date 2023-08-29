@@ -75,3 +75,13 @@ def check_user(data):
       break
   else:
     return 0
+
+
+def put_slip_request(details):
+  with engine.connect() as conn:
+    id = details[0]
+    data = details[1]
+    qry_data = [{"val1": id,"val2": data['std_name'],"val3": data['place'],"val4": data['address'],"val5": data['time_go'],"val6": data['time_in'],"val7": data['hostel_name'],"val8": data['clg_name'],"val9": data['room_no']}]
+    conn.execute(text("insert into bridge_slip (id,std_name,place,address,time_go,time_in,hostel_name,clg_name,room_no) values (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8,:val9)"),qry_data)
+    conn.commit()
+  return
