@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request, redirect, url_for
-from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin, put_slip_request, load_slip, load_bridge_slip
+from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin, put_slip_request, load_slip, load_bridge_slip, pass_slip
 
 app = Flask(__name__)
 
@@ -85,9 +85,13 @@ def ad_slipy():
   slip_data = load_bridge_slip()
   return render_template('slipdata.html',slips=slip_data)
 
-
-
-
+@app.route("/ad_slip/slips_checked",methods=['post'])
+def slips_approved():
+  passed = request.form.getlist('allow')
+  not_passed = request.form.getlist('deny')
+  pass_slip(passed,not_passed)
+  return redirect("/ad_slip")
+  
 
 
 if __name__ == '__main__':

@@ -115,3 +115,18 @@ def load_bridge_slip():
       slips.append(row._asdict())
 
   return slips
+
+def pass_slip(passed_list,reject_list):
+  with engine.connect() as conn:
+    qry1 = "insert into pass_slip select * from bridge_slip where slip_id=:val"
+    qry2 = "delete from bridge_slip where slip_id=:val"
+    for i in passed_list:
+      conn.execute(text(qry1),{"val":i})
+      conn.execute(text(qry2),{"val":i})
+      conn.commit()
+
+    for j in reject_list:
+      conn.execute(text(qry2),{"val":j})
+      conn.commit()
+      
+    return

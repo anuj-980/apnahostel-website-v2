@@ -5,6 +5,7 @@
   <body>
     <div class="h-100 d-sm-flex align-items-center justify-content-center">
       <div class="grid" style="padding:15px;">
+        <form action="/ad_slip/slips_checked" method="post">
         <table class="table">
           <thead>
             <tr>
@@ -18,6 +19,8 @@
               <th scope="col">Clg Name</th>
               <th scope="col">Hostel Name</th>
               <th scope="col">Room No</th>
+              <th scope="col">Allow</th>
+              <th scope="col">Deny</th></th>
             </tr>
           </thead>
           <tbody>
@@ -33,11 +36,23 @@
                 <td>{{slip.clg_name}}</td>
                 <td>{{slip.hostel_name}}</td>
                 <td>{{slip.room_no}}</td>
-                </th>
-              </tr>
-            {% endfor %}
-          </tbody>
+                <td><div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input bg-success bg-opacity-75 border border-success rounded-end" name="allow" value={{slip.slip_id}} id="exampleCheck1"></div></td>
+  
+      <td><div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input  bg-danger bg-opacity-75 border border-danger rounded-end" name="deny" value={{slip.slip_id}} id="exampleCheck1">
+  </div></td>
+
+               
+      </th>
+    </tr>
+  {% endfor %}
+</tbody>
+            
+         
         </table>
+         <button type="submit" class="btn btn-primary mt-3">Submit</button>
+         </form>
       </div>
     </div>
   
