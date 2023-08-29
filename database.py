@@ -84,4 +84,34 @@ def put_slip_request(details):
     qry_data = [{"val1": id,"val2": data['std_name'],"val3": data['place'],"val4": data['address'],"val5": data['time_go'],"val6": data['time_in'],"val7": data['hostel_name'],"val8": data['clg_name'],"val9": data['room_no']}]
     conn.execute(text("insert into bridge_slip (id,std_name,place,address,time_go,time_in,hostel_name,clg_name,room_no) values (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8,:val9)"),qry_data)
     conn.commit()
-  return
+    
+    result = conn.execute(
+      text("SELECT * FROM bridge_slip WHERE id=:val"),{"val": id})
+    rows = result.all()
+    if len(rows) == 0:
+      return None
+    else:
+      slip = rows[len(rows)-1]._asdict()
+
+    slip_id = slip['slip_id']
+  return slip_id
+
+def load_slip(s_id):
+  with engine.connect() as conn:
+    result = conn.execute(
+      text("SELECT * FROM bridge_slip WHERE slip_id=:val"),{"val": s_id})
+    rows = result.all()
+    if len(rows) == 0:
+      return None
+    else:
+      return rows[0]._asdict()
+
+def load_bridge_slip():
+  with engine.connect() as conn:
+    result = conn.execute(
+      text("SELECT * FROM bridge_slip"))
+    slips = []
+    for row in result.all():
+      slips.append(row._asdict())
+
+  return slips
