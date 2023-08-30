@@ -130,3 +130,13 @@ def pass_slip(passed_list,reject_list):
       conn.commit()
       
     return
+
+def load_pass_slip(id):
+  with engine.connect() as conn:
+    result = conn.execute(
+      text("SELECT * FROM pass_slip where id=:val"),{"val":id})
+    slips = []
+    for row in result.all():
+      slips.append(row._asdict())
+
+  return slips

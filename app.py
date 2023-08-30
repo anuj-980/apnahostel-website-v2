@@ -1,5 +1,5 @@
 from flask import Flask, render_template,jsonify, request, redirect, url_for
-from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin, put_slip_request, load_slip, load_bridge_slip, pass_slip
+from database import load_signin, load_user, do_signup, load_admin, check_user, check_admin, put_slip_request, load_slip, load_bridge_slip, pass_slip, load_pass_slip
 
 app = Flask(__name__)
 
@@ -24,12 +24,12 @@ def show_user(id):
     return "Not Found"
   return render_template('user.html', user=user)'''
 
-@app.route("/student/<id>")
+@app.route("/SignIn/welcome/student/<id>")
 def student(id):
   user = load_user(id)
   return render_template('user.html',user=user)
 
-@app.route("/admin/<id>")
+@app.route("/SignIn/welcome/admin/<id>")
 def ad(id):
   admin = load_admin(id)
   return render_template('admin.html',admin=admin)
@@ -43,7 +43,7 @@ def welcome_user():
 
   if user_id:
     return redirect(url_for('student',id=user_id))
-  elif admin_id:
+  if admin_id:
     return redirect(url_for('ad',id=admin_id))
   else:
     return "Incorrect email or password"
@@ -75,6 +75,12 @@ def slip_requested():
   user = user_id
   return render_template('slip_requested.html',user=user,slip=slip)
 
+@app.route("/slip/view")
+def slip_view():
+  slip = load_pass_slip(user_id)
+  if not slip:
+    return "No slips issued currently"
+  return render_template('view_slip.html',slips=slip)
 
 
 #________________________________________________________________

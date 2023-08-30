@@ -1,0 +1,47 @@
+<html>
+  <head>
+    {% include 'bootstrap.html' %}
+  </head>
+  <body>
+    <div class="h-100 d-sm-flex align-items-center justify-content-center">
+      <div class="grid" style="padding:15px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Slip Id</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Place</th>
+              <th scope="col">Address</th>
+              <th scope="col">Time of departure</th>
+              <th scope="col">Time of arrival</th>
+              <th scope="col">Clg Name</th>
+              <th scope="col">Hostel Name</th>
+              <th scope="col">Room No</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for slip in slips %}
+              <tr>
+                <th scope="row">{{slip.slip_id}}
+                <td>{{slip.std_name}}</td>
+                <td>{{slip.place}}</td>
+                <td>{{slip.address}}</td>
+                <td>{{slip.time_go}}</td>
+                <td>{{slip.time_in}}</td>
+                <td>{{slip.clg_name}}</td>
+                <td>{{slip.hostel_name}}</td>
+                <td>{{slip.room_no}}</td>
+                </th>
+              </tr>
+            {% endfor %}
+          </tbody>
+            
+         
+        </table>
+        
+      </div>
+    </div>
+  
+</body>
+</html>
